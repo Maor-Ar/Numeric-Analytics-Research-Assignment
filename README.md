@@ -21,16 +21,8 @@
      
    <hr>
    
-   In this project we demonstrate our knowledge in:
-   * **Machine Epsilon** 
-   * **Linear Algebra** 
-   * **advanced OOP** 
-   * **Numeric computing methods**
-   * **Numeric Methods**
-   * **Itrational Methods**
-   * **interpolation methods**
-   * **and Python in general .**
-  
+   In this project we show in depth the use of the Newton's Backward Difference formula
+
 
 Feel free to use this code for any porpuse <sup> (Please do not misuse for malicious intent) </sub>
 
