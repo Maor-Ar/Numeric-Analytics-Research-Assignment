@@ -16,19 +16,13 @@
 
 
      This code is a group research assignment for Numeric Analitics Course.
+     
+     In this project we show in depth the use of the Newton's Backward Difference formula
+     
 
      
      
    <hr>
    
-   In this project we show in depth the use of the Newton's Backward Difference formula
-
-
-Feel free to use this code for any porpuse <sup> (Please do not misuse for malicious intent) </sub>
-
-
-
- 
-
 
 <code><strong><sup><strike>Ignore this (tags for future use)</strike></sup></strong></code>
