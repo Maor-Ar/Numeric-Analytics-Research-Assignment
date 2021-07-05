@@ -59,7 +59,7 @@ def newtonBackward(x, y, n, value):
     sum = y[n - 1][0]
     h = (x[1] - x[0])
     s = round((value - x[n - 1]) / h, 3)
-    sum = round(sum, 3)
+    sum = round(sum, 6)
 
     str1 = ""
     print(bcolors.OKBLUE, "Interpolation & Extrapolation Newton's Backward Difference formula", bcolors.ENDC)
@@ -139,7 +139,7 @@ y = [[0 for i in range(n)]
 for i in range(n):
     xi = float(input(bcolors.BOLD+"Please enter value of X"+ str(i+1)+bcolors.ENDC))
     if i > 1:
-        while x[1]-x[0] != xi-x[i-1]:
+        while round(x[1]-x[0],3) != round(xi-x[i-1],3):
             print(bcolors.FAIL, "must have ordinary differences.",bcolors.ENDC)
             xi = float(input(bcolors.BOLD + "Please enter value of X" + str(i + 1) + bcolors.ENDC))
     x.append(xi)
