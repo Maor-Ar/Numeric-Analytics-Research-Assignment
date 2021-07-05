@@ -59,7 +59,7 @@ def newtonBackward(x, y, n, value):
     sum = y[n - 1][0]
     h = (x[1] - x[0])
     s = round((value - x[n - 1]) / h, 3)
-    sum = round(sum, 6)
+    sum = round(sum, 3)
 
     str1 = ""
     print(bcolors.OKBLUE, "Interpolation & Extrapolation Newton's Backward Difference formula", bcolors.ENDC)
@@ -95,7 +95,7 @@ def newtonBackward(x, y, n, value):
     print(bcolors.UNDERLINE + str2 + bcolors.ENDC)
     for i in range(1, n):
         sum = sum + (call(s, i) * y[n - 1][i]) / factorial(i)
-        sum = round(sum, 3)
+        sum = round(sum, 6)
         if i == 1:
             print(bcolors.WARNING + "P1(" + str(s) + ")" + bcolors.ENDC + "=f5+s∇f5")
             print("yɴ = ", sum)
@@ -148,4 +148,3 @@ for i in range(n):
     y[i][0] = yi
 value = float(input(bcolors.BOLD+"Please select the point value you want to find "+bcolors.ENDC))
 newtonBackward(x, y, n, value)
-
