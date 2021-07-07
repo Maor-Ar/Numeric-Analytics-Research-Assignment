@@ -4,8 +4,8 @@
  * Emails: maorar1@ac.sce.ac.il |  neriyazudi@Gmail.com
  *         matan15595m@gmail.com  |  sofermatan123@gmail.com
  * Department of Computer Engineering - Numeric Analytics Research-Assignment
-
 """
+
 class bcolors:
     ENDC = '\033[0m'
     HEADER = '\033[95m'
@@ -16,8 +16,6 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-
-
 def tablePoints(x, y):
     """
     :param x: x values of table points
@@ -30,37 +28,31 @@ def tablePoints(x, y):
     return table
 
 
-def newtonBackward(x, y, n, value):
+
+def newtonBackward(x, y, n, PointToFind):
     """
     Formula for calculating an approximate value between table points (Interpolation)
       or outside table points (Extrapolation). The function displays calculations until it reaches the final result.
     :param x: x values of table points
     :param y: y values of table points, Given as a 2D array so that y values are in the first column
     :param n:  number of table points
-    :param value: The value we want to find its approximation
+    :param PointToFind: The value we want to find its approximation
     """
-
     # calculating factorial
     def factorial(a):
         """
         :param a: The number on which we will perform a factorial action
         :return: The result of the calculation a!
         """
-        f = 1
+        start = 1
         for i in range(2, a + 1):
-            f *= i
-        return f
+            start *= i
+        return start
 
-    # calculating s mentioned in the formula
-    def call(s, n):
-        temp = s
-        for i in range(1, n):
-            temp = temp * (s + i)
-        return temp
     def print1():
         print(bcolors.OKBLUE, "Interpolation & Extrapolation Newton's Backward Difference formula", bcolors.ENDC)
         print(bcolors.OKBLUE, "Table Points", tablePoints(x, y), bcolors.ENDC)
-        print(bcolors.OKGREEN, "Finding an approximation to the point ", value, "\n", bcolors.ENDC)
+        print(bcolors.OKGREEN, "Finding an approximation to the point ", PointToFind, "\n", bcolors.ENDC)
         print(bcolors.OKBLUE + f"h = (x[1] - x[0]) = {h}" + bcolors.ENDC)
         print(bcolors.OKBLUE + "s = (value - x[n - 1]) / h = " + bcolors.ENDC, s)
         str3 = "y(x) = (yɴ)+ "
@@ -77,7 +69,6 @@ def newtonBackward(x, y, n, value):
                 str4 = str4 + "/" + str(i + 1) + "!) + "
             str3 = str3 + str4
         print(bcolors.HEADER + str3 + bcolors.ENDC)
-
     def print2():
         str2 = ""
         for i in range(n):
@@ -90,12 +81,11 @@ def newtonBackward(x, y, n, value):
             else:
                 str2 = str2 + "*" + str(y[n - 1 - i][0]) + "/" + str(factorial(i)) + "+"
         print(bcolors.UNDERLINE + str2 + bcolors.ENDC)
-
     def print3()  :
         str1 = ""
         if i == 1:
             print(bcolors.WARNING + "P1(" + str(s) + ")" + bcolors.ENDC + "=f5+s∇f5")
-            print("yɴ = ", sum)
+            print("yɴ = ", result)
         else:
             if i == n - 1:
                 print(
@@ -109,35 +99,31 @@ def newtonBackward(x, y, n, value):
                 str1 = str1 + "(" + str(s) + "+" + str(j) + ")"
             if i == 2:
                 print("        " + bcolors.FAIL + str1 + "*" + str(y[n - 1][i]) + "/" + str(
-                    i) + "! = " + bcolors.ENDC + bcolors.BOLD + str(sum) + bcolors.ENDC)
+                    i) + "! = " + bcolors.ENDC + bcolors.BOLD + str(result) + bcolors.ENDC)
             else:
                 print("        " + bcolors.FAIL + str1 + "/" + str(i) + "! = " + bcolors.ENDC + bcolors.BOLD + str(
-                    sum) + bcolors.ENDC)
+                    result) + bcolors.ENDC)
             str1 = ""
-
-
-
-
-    # Calculating the  difference table
+    # Calculate the defferences
     for i in range(1, n):
         for j in range(n - 1, i - 1, -1):
             y[j][i] = y[j][i - 1] - y[j - 1][i - 1]
-
-    # initializing s and sum
-    sum = y[n - 1][0]
+    # initializing s and result
+    result = y[n - 1][0]
     h = (x[1] - x[0])
-    s = round((value - x[n - 1]) / h, 3)
-    sum = round(sum, 3)
+    s = round((PointToFind - x[n - 1]) / h, 3)
+    result = round(result, 3)
     print1()
     print2()
-
-
+    #calculate by formula with factorial and y vaulues
     for i in range(1, n):
-        sum = sum + (call(s, i) * y[n - 1][i]) / factorial(i)
-        sum = round(sum, 6)
+        t1 = s
+        for j in range(1, i):
+            t1 = t1* (s + j)
+        result = result + (t1 * y[n - 1][i]) / factorial(i)
+        result = round(result, 6)
         print3()
-
-    # Display the difference table
+    # show  final difference table
     print(bcolors.OKGREEN + "BACKWARD DIFFERENCE TABLE" + bcolors.ENDC)
     print("X  |")
     for i in range(n):
@@ -146,13 +132,18 @@ def newtonBackward(x, y, n, value):
             print(bcolors.OKBLUE, y[i][j], end="\t" + bcolors.ENDC)
         print("")
 
-    print(bcolors.BOLD + "The approximation of the point", value, "is", str(sum), bcolors.ENDC)
+    print(bcolors.BOLD + "The approximation of the point", PointToFind, "is", str(result), bcolors.ENDC)
 
 
+
+##input and call main function
 n=int(input(bcolors.BOLD+"Please enter number of X,Y Points  "))
 x=[]
-y = [[0 for i in range(n)]
-     for j in range(n)]
+y = []
+for q in range(n):
+    y.append([])
+    for m in range(n):
+        y[q].append(0)
 for i in range(n):
     xi = float(input(bcolors.BOLD+"Please enter value of X"+ str(i+1)+" " +bcolors.ENDC))
     if i > 1:
@@ -160,6 +151,7 @@ for i in range(n):
             print(bcolors.FAIL, "must have ordinary differences.",bcolors.ENDC)
             xi = float(input(bcolors.BOLD + "Please enter value of X" + str(i + 1) +" "+ bcolors.ENDC))
     x.append(xi)
+
 for i in range(n):
     yi = float(input(bcolors.BOLD+"Please enter value of Y"+ str(i+1)+" " +bcolors.ENDC))
     y[i][0] = yi
