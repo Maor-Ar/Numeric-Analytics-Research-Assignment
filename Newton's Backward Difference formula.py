@@ -75,16 +75,16 @@ def newtonBackward(x, y, n, PointToFind):
             for j in range(i):
                 str2 = str2 + "(" + str(s) + "+" + str(j) + ")"
             if i == 0:
-                str2 = str2 + str(y[n - 1 - i][0]) + "/" + str(factorial(i)) + "+"
+                str2 = str2 + str(y[n - 1][i]) + "/" + str(factorial(i)) + "+"
             elif i == n - 1:
-                str2 = str2 + "*" + str(y[n - 1 - i][0]) + "/" + str(factorial(i))
+                str2 = str2 + "*" + str(y[n - 1][i]) + "/" + str(factorial(i))
             else:
-                str2 = str2 + "*" + str(y[n - 1 - i][0]) + "/" + str(factorial(i)) + "+"
+                str2 = str2 + "*" + str(y[n - 1][i]) + "/" + str(factorial(i)) + "+"
         print(bcolors.UNDERLINE + str2 + bcolors.ENDC)
     def print3()  :
         str1 = ""
         if i == 1:
-            print(bcolors.WARNING + "P1(" + str(s) + ")" + bcolors.ENDC + "=f5+s∇f5")
+            print(bcolors.WARNING + "P1(" + str(s) + ")" + bcolors.ENDC + "=f"+str(n-1)+"+s∇f"+str(n-1))
             print("yɴ = ", result)
         else:
             if i == n - 1:
